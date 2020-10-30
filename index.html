@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="./resourse/logo.png" type="image/png">
     <title>Laba_3</title>
 </head>
 <body>
@@ -19,16 +20,21 @@
 </header>
 <section class='main'>
     <article>
-       <form class="form-container">
+       <div class="form-container">
+           <div class='art'>
            <h1>Interview</h1>
-           <div class='text'><input class ='FIO' name="text" type="text"> <label for="text">ФИО</label></div>
-           <div class='color'><input name="color" class ='color-btn' type="color" value="#fff"><label class='color-lab'for="color">какой лучше цвет скатерти?</label></div>
+           </div>
+           <div class='first-row'>
+           <div class='text'><input value = 'FIO' id='text' class ='FIO' name="text" type="text"> <label for="text">ФИО</label></div>
+           <div class='color'><input id='color' name="color" class ='color-btn' type="color" value="#fff"><label class='color-lab'for="color">какой лучше цвет скатерти?</label></div>
            <div class="checkbox">
-            <input id="check1" type="checkbox" name="check" value="check1">
+            <input id="check1" type="checkbox" name="check" value="Понравилось">
             <label for="check1">Понравилось ли вам у нас?</label>
-        </div>
+            </div>
+           </div>
+           <div class='second-row'>
            <div class='option'>
-               <select name="sel">
+               <select id='sel'name="sel">
            <option value="">Как вам на ресторан</option>
            <option value="Буду советовать друзьям" selected>Буду советовать друзьям</option>
            <option value="Приятно провела время">Приятно провела время</option>
@@ -38,20 +44,23 @@
            <label for="sel">Оцените ресторан</label></div>
            <div class='radio'>
                <ul class='radio-list'>
-                   <li><input name="r1" type="radio"><label for="r1">Я пришел 1</label></li>
-                   <li><input name="r2" type="radio"><label for="r2">Я пришел не 1</label></li>
+                   <li><input id = 'r1' name="r1" type="radio"><label for="r1">Я пришел 1</label></li>
+                   <li><input id = 'r2' name="r2" type="radio"><label for="r2">Я пришел не 1</label></li>
                </ul>
         </div>
-           <div class='range'><input class = 'range-i' max="10" min="0" step="1" name="range" type="range"><label for="range">Ваша оценка</label></div>
+           <div class='range'><input id ='range' class = 'range-i' max="10" min="0" step="1" name="range" type="range"><label for="range">Ваша оценка</label></div>
+           </div>
            <div class='area'>
             <h1>your opinion</h1>   
-            <textarea name="" id="" cols="100" rows="5"></textarea></div>
-       </form>
+            <textarea id="area" cols="100" rows="5"></textarea>
+        <button class='btn-bt' id="btn" type="submit">Add</button>
+        </div>
+    </div>
     </article>
     <nav class='navigation'>
         <ul class='navigatio-list'>
             <li class='navigation-item'>Главня</li>
-            <li class='navigation-item'>Резульятат</li>
+            <li id = 'rez' class='navigation-item'>Резульятат</li>
         </ul>
     </nav>
     <aside>
@@ -64,4 +73,78 @@
     </div>
 </footer>
 </body>
+<script>
+    let Data  = {
+        name:[],
+        color:[],
+        check:[],
+        sel:[],
+        radio:[],
+        range:[],
+        area:[]
+    },
+    count  = 0
+
+const updateData = () => {
+    console.log('lol')
+   Data.name.push(document.getElementById('text').value);
+   Data.color.push(document.getElementById('color').value);
+   Data.check.push(document.getElementById('check1').value);
+   Data.sel.push(document.getElementById('sel').value);
+       if (document.getElementById('r1').value === true){
+        Data.radio.push(1);
+       }else Data.radio.push('больше одного');
+   Data.range.push(document.getElementById('range').value);
+   Data.area.push(document.getElementById('area').value);
+   console.log(Data);
+   count++;
+}
+
+function lol(){
+    for (key of Object.values(Data)){
+     console.log(key)
+    }
+}
+
+console.log(lol())
+
+function newWindow(Width, Height, resourse){
+let newWin = window.open('', 'Table', `width = ${Width} height = ${Height}`)
+let div = document.createElement('div');
+table = document.createElement('table'),
+body = newWin.document.body,
+caption = document.createElement('caption'),
+tr = document.createElement('tr');
+body.append(div);
+div.append(table);
+table.setAttribute('border', '1');
+div.setAttribute('style',  'background-image: url("../resourse/restoran.jpg")')
+table.append(caption);
+caption.append(tr);
+for (key of Object.keys(Data)){
+    if(key !== undefined){
+        let th =  document.createElement('th');
+        th.setAttribute('style', 'width:100px')
+th.innerHTML = `${key}`;
+tr.append(th);
+    }
+    }
+    for (let i = 0; i < count; i++){
+       let  tr =  document.createElement('tr');
+       table.append(tr)
+        for (key of Object.values(Data)){
+            if(key[i] !== undefined){
+                let td = document.createElement('td');
+                td.setAttribute('style', 'width:100px')
+td.innerHTML = `${key[i]}`;
+tr.append(td);
+            }
+    }
+    }
+
+}
+
+document.getElementById('rez').addEventListener('click', newWindow);
+document.querySelector('.btn-bt').addEventListener('click', updateData);
+    </script>
 </html>
