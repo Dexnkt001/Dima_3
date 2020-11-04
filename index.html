@@ -20,13 +20,13 @@
 </header>
 <section class='main'>
     <article>
-       <div class="form-container">
+       <form class="form-container">
            <div class='art'>
            <h1>Interview</h1>
            </div>
            <div class='first-row'>
            <div class='text'><input value = 'FIO' id='text' class ='FIO' name="text" type="text"> <label for="text">ФИО</label></div>
-           <div class='color'><input id='color' name="color" class ='color-btn' type="color" value="#fff"><label class='color-lab'for="color">какой лучше цвет скатерти?</label></div>
+           <div class='color'><input id='color' name="color" class ='color-btn' type="color" value="#fff"><label class='color-lab'for="color">Преобладающий цвет интерьера?</label></div>
            <div class="checkbox">
             <input id="check1" type="checkbox" name="check" value="Понравилось">
             <label for="check1">Понравилось ли вам у нас?</label>
@@ -42,20 +42,21 @@
            <option value="Больше ни нагой">Больше ни нагой</option>
                </select>
            <label for="sel">Оцените ресторан</label></div>
-           <div class='radio'>
-               <ul class='radio-list'>
-                   <li><input id = 'r1' name="r1" type="radio"><label for="r1">Я пришел 1</label></li>
-                   <li><input id = 'r2' name="r2" type="radio"><label for="r2">Я пришел не 1</label></li>
-               </ul>
-        </div>
+           <div class = 'raddio'>
+            <p>Придете ли вы еще</p>
+            <input type="radio" id="r1" name="gender" value="pridu" checked>
+            <label for="male">Да, приду</label><br>
+            <input type="radio" id="r2" name="gender" value="ne_pridu">
+            <label for="female">Нет</label><br>
+           </div >
            <div class='range'><input id ='range' class = 'range-i' max="10" min="0" step="1" name="range" type="range"><label for="range">Ваша оценка</label></div>
            </div>
            <div class='area'>
             <h1>your opinion</h1>   
             <textarea id="area" cols="100" rows="5"></textarea>
-        <button class='btn-bt' id="btn" type="submit">Add</button>
+        <button class='btn-bt' id="btn" type='button'>Add</button>
         </div>
-    </div>
+    </form>
     </article>
     <nav class='navigation'>
         <ul class='navigatio-list'>
@@ -86,14 +87,13 @@
     count  = 0
 
 const updateData = () => {
-    console.log('lol')
    Data.name.push(document.getElementById('text').value);
    Data.color.push(document.getElementById('color').value);
    Data.check.push(document.getElementById('check1').value);
    Data.sel.push(document.getElementById('sel').value);
-       if (document.getElementById('r1').value === true){
-        Data.radio.push(1);
-       }else Data.radio.push('больше одного');
+       if (document.getElementById('r1').checked === true){
+        Data.radio.push('еще приду');
+       }else Data.radio.push('больше не приду');
    Data.range.push(document.getElementById('range').value);
    Data.area.push(document.getElementById('area').value);
    console.log(Data);
@@ -106,21 +106,26 @@ function lol(){
     }
 }
 
-console.log(lol())
 
-function newWindow(Width, Height, resourse){
+let newWindow = (Width, Height, resourse) => {
+    console.log('rabotaet');
 let newWin = window.open('', 'Table', `width = ${Width} height = ${Height}`)
 let div = document.createElement('div');
 table = document.createElement('table'),
 body = newWin.document.body,
+head = newWin.document.head,
+link = document.createElement('link');
+link.setAttribute('rel',"stylesheet"),
+link.setAttribute('href',"style.css"),
 caption = document.createElement('caption'),
 tr = document.createElement('tr');
 body.append(div);
 div.append(table);
 table.setAttribute('border', '1');
-div.setAttribute('style',  'background-image: url("../resourse/restoran.jpg")')
+div.setAttribute('style',  `background-image: url('')`)
 table.append(caption);
 caption.append(tr);
+head.append(link);
 for (key of Object.keys(Data)){
     if(key !== undefined){
         let th =  document.createElement('th');
@@ -144,7 +149,9 @@ tr.append(td);
 
 }
 
-document.getElementById('rez').addEventListener('click', newWindow);
+document.getElementById('rez').addEventListener('click', () => {
+    newWindow(500, 500);
+});
 document.querySelector('.btn-bt').addEventListener('click', updateData);
     </script>
 </html>

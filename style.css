@@ -63,6 +63,7 @@ article {
   display: flex;
   width: 100%;
   justify-content: center;
+  border: red;
 }
 
 .form-container h1 {
@@ -144,24 +145,6 @@ input[type="checkbox"]:checked + label:before {
   line-height: 15px;
 }
 
-.radio-list label:before {
-  border: 3px solid orangered;
-  border-radius: 8px;
-}
-
-input[type="radio"] {
-  display: none;
-}
-
-input[type="radio"]:checked + label:before {
-  content: "\2022";
-  background-color: white;
-  color: #f3f3f3;
-  font-size: 30px;
-  text-align: center;
-  line-height: 18px;
-}
-
 select {
   border: 3px solid purple;
   border-radius: 5px;
@@ -169,14 +152,12 @@ select {
   color: white;
 }
 
-.radio {
-  font-size: 15px;
-  display: flex;
-  justify-content: center;
+.raddio {
+  border: 3px solid blue;
 }
 
-.radio-list {
-  list-style: none;
+.range {
+  border: 3px solid blueviolet;
 }
 
 .range-i {
@@ -187,6 +168,7 @@ select {
   display: flex;
   width: 100%;
   flex-direction: column;
+  border: 3px solid red;
 }
 
 .area h1 {
@@ -248,10 +230,4 @@ footer {
   color: orange;
   letter-spacing: 20px;
   background-color: rgba(0, 0, 0, 0.9);
-}
-
-td,
-th {
-  display: block;
-  width: 100px;
 }
