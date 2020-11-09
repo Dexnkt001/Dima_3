@@ -44,6 +44,16 @@ let setdata = () => {
     }
 }
 
+let ResetData = () => {
+    localStorage.setItem('info', null)
+    localStorage.setItem('count', null)
+    for (key in Data){
+        Data[key] = []
+    }
+    count = 0
+    str = ``
+}
+
 let newWindow = () => {
     localStorage.setItem('info', JSON.stringify(Data))
     localStorage.setItem('count', JSON.stringify(count))
@@ -59,7 +69,6 @@ win.document.write(
         <link rel="shortcut icon" href="./resourse/logo.png" type="image/png">"
     </head>
     <body class = 'back'>
-    <div class = 'shadow'></div>
     <table style='color:white'>
         <caption>
             <tr>
@@ -74,13 +83,27 @@ win.document.write(
         </caption>
         ${str}
     </table>
+    <div class='butS'>
+    <button class='btn-btE' id="btnE" type='button'>Exit</button>
+    <button class='btn-btP' id="btnP" type='button'>Prev</button>
+    </div>
+    <script>
+    let ExitWindow = () =>{
+        window.close();
+    },
+
+    PrevWindow = ()=>{
+        window.blur();
+    }
+    document.querySelector('.btn-btE').addEventListener('click',ExitWindow);
+    document.querySelector('.btn-btP').addEventListener('click',PrevWindow);
+    </script>
       </body>
-      <script>
-      </script>
       </html>`
 );
 }
 
 
 document.getElementById('rez').addEventListener('click',newWindow);
-document.querySelector('.btn-bt').addEventListener('click', updateData);
+document.querySelector('.btn-btA').addEventListener('click', updateData);
+document.querySelector('.btn-btR').addEventListener('click', ResetData);
