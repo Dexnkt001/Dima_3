@@ -231,3 +231,32 @@ footer {
   letter-spacing: 20px;
   background-color: rgba(0, 0, 0, 0.9);
 }
+
+table {
+  border: 2px solid white;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+td,
+th {
+  border: 1px solid white;
+}
+
+.back {
+  background-image: url("./resourse/restoran.jpg");
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}

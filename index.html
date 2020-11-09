@@ -35,7 +35,7 @@
            <div class='second-row'>
            <div class='option'>
                <select id='sel'name="sel">
-           <option value="">Как вам на ресторан</option>
+           <option value="">Как вам наш ресторан</option>
            <option value="Буду советовать друзьям" selected>Буду советовать друзьям</option>
            <option value="Приятно провела время">Приятно провела время</option>
            <option value="Ничего особенного">Ничего особенного</option>
@@ -61,7 +61,7 @@
     <nav class='navigation'>
         <ul class='navigatio-list'>
             <li class='navigation-item'>Главня</li>
-            <li id = 'rez' class='navigation-item'>Резульятат</li>
+            <li id = 'rez' class='navigation-item'>Результат</li>
         </ul>
     </nav>
     <aside>
@@ -74,84 +74,5 @@
     </div>
 </footer>
 </body>
-<script>
-    let Data  = {
-        name:[],
-        color:[],
-        check:[],
-        sel:[],
-        radio:[],
-        range:[],
-        area:[]
-    },
-    count  = 0
-
-const updateData = () => {
-   Data.name.push(document.getElementById('text').value);
-   Data.color.push(document.getElementById('color').value);
-   Data.check.push(document.getElementById('check1').value);
-   Data.sel.push(document.getElementById('sel').value);
-       if (document.getElementById('r1').checked === true){
-        Data.radio.push('еще приду');
-       }else Data.radio.push('больше не приду');
-   Data.range.push(document.getElementById('range').value);
-   Data.area.push(document.getElementById('area').value);
-   console.log(Data);
-   count++;
-}
-
-function lol(){
-    for (key of Object.values(Data)){
-     console.log(key)
-    }
-}
-
-
-let newWindow = (Width, Height, resourse) => {
-    console.log('rabotaet');
-let newWin = window.open('', 'Table', `width = ${Width} height = ${Height}`)
-let div = document.createElement('div');
-table = document.createElement('table'),
-body = newWin.document.body,
-head = newWin.document.head,
-link = document.createElement('link');
-link.setAttribute('rel',"stylesheet"),
-link.setAttribute('href',"style.css"),
-caption = document.createElement('caption'),
-tr = document.createElement('tr');
-body.append(div);
-div.append(table);
-table.setAttribute('border', '1');
-div.setAttribute('style',  `background-image: url('')`)
-table.append(caption);
-caption.append(tr);
-head.append(link);
-for (key of Object.keys(Data)){
-    if(key !== undefined){
-        let th =  document.createElement('th');
-        th.setAttribute('style', 'width:100px')
-th.innerHTML = `${key}`;
-tr.append(th);
-    }
-    }
-    for (let i = 0; i < count; i++){
-       let  tr =  document.createElement('tr');
-       table.append(tr)
-        for (key of Object.values(Data)){
-            if(key[i] !== undefined){
-                let td = document.createElement('td');
-                td.setAttribute('style', 'width:100px')
-td.innerHTML = `${key[i]}`;
-tr.append(td);
-            }
-    }
-    }
-
-}
-
-document.getElementById('rez').addEventListener('click', () => {
-    newWindow(500, 500);
-});
-document.querySelector('.btn-bt').addEventListener('click', updateData);
-    </script>
+    <script src="script.js"></script>
 </html>
