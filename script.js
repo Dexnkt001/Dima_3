@@ -13,7 +13,7 @@ str  = '';
 window.onload = function (){
     if (JSON.parse(localStorage.getItem('info'))) {
         Data = JSON.parse(localStorage.getItem('info'));
-    count = JSON.parse(localStorage.getItem('count'))
+    count = JSON.parse(localStorage.getItem('count'));
     }
 }
 
@@ -45,18 +45,19 @@ let setdata = () => {
 }
 
 let ResetData = () => {
-    localStorage.setItem('info', null)
-    localStorage.setItem('count', null)
+    localStorage.setItem('info', null);
+    localStorage.setItem('count', null);
     for (key in Data){
-        Data[key] = []
+        Data[key] = [];
     }
-    count = 0
-    str = ``
+    count = 0;
+    str = ``;
 }
 
+
 let newWindow = () => {
-    localStorage.setItem('info', JSON.stringify(Data))
-    localStorage.setItem('count', JSON.stringify(count))
+    localStorage.setItem('info', JSON.stringify(Data));
+    localStorage.setItem('count', JSON.stringify(count));
 setdata();
 var win=window.open("","hello","width=1300 height=800");
 win.document.write(
@@ -96,13 +97,11 @@ win.document.write(
         window.blur();
     }
     document.querySelector('.btn-btE').addEventListener('click',ExitWindow);
-    document.querySelector('.btn-btP').addEventListener('click',PrevWindow);
     </script>
       </body>
       </html>`
 );
 }
-
 
 document.getElementById('rez').addEventListener('click',newWindow);
 document.querySelector('.btn-btA').addEventListener('click', updateData);
